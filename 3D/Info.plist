@@ -25,8 +25,8 @@
 			<string>UITouchText.look</string>
 			<key>UIApplicationShortcutItemUserInfo</key>
 			<dict>
-				<key>key1</key>
-				<string>value1</string>
+				<key>key2</key>
+				<string>value2</string>
 			</dict>
 		</dict>
 		<dict>
@@ -38,8 +38,8 @@
 			<string>UITouchText.compose</string>
 			<key>UIApplicationShortcutItemUserInfo</key>
 			<dict>
-				<key>key1</key>
-				<string>value1</string>
+				<key>key2</key>
+				<string>value2</string>
 			</dict>
 		</dict>
 	</array>

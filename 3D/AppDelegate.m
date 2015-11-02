@@ -53,6 +53,8 @@
 {
     if([shortcutItem.type isEqualToString:@"UITouchText.share"])
     {
+         //获取shortcutItem 的userInfo的字典
+         NSLog(@"%@",shortcutItem.userInfo);
          [self.mainTabBarController setSelectedIndex:0];
          //selectedViewController 本身就是导航视图  push的时候不用加navigationController
           SareViewController *sareViewController = [[SareViewController alloc] init];
@@ -60,14 +62,14 @@
         
     }else if ([shortcutItem.type isEqualToString:@"UITouchText.look"])
     {
-        
+        NSLog(@"%@",shortcutItem.userInfo);
        [self.mainTabBarController setSelectedIndex:0];
        LookViewController *sareViewController = [[LookViewController alloc] init];
        [self.mainTabBarController.selectedViewController pushViewController:sareViewController animated:YES];
     
     }else if ([shortcutItem.type isEqualToString:@"UITouchText.compose"])
     {
-        
+        NSLog(@"%@",shortcutItem.userInfo);
        [self.mainTabBarController setSelectedIndex:1];
        CompossViewController *sareViewController = [[CompossViewController alloc] init];
        [self.mainTabBarController.selectedViewController pushViewController:sareViewController animated:YES];
