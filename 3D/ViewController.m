@@ -17,6 +17,8 @@
 @property (nonatomic,strong) UITableView *mainTableView;
 @property (nonatomic,strong) NSMutableArray *dataArray;
 
+@property (nonatomic)  CGFloat tableOffsetHight;
+
 @end
 
 @implementation ViewController
@@ -63,6 +65,18 @@
     [self.dataArray addObject:@"3D2"];
     [self.dataArray addObject:@"3D3"];
     [self.dataArray addObject:@"3D4"];
+    [self.dataArray addObject:@"3D5"];
+    [self.dataArray addObject:@"3D6"];
+    [self.dataArray addObject:@"3D7"];
+    [self.dataArray addObject:@"3D8"];
+    [self.dataArray addObject:@"3D9"];
+    [self.dataArray addObject:@"3D10"];
+    [self.dataArray addObject:@"3D11"];
+    [self.dataArray addObject:@"3D12"];
+    [self.dataArray addObject:@"3D13"];
+    [self.dataArray addObject:@"3D14"];
+    
+    _tableOffsetHight = 0.0;
     
     [self.mainTableView reloadData];
 }
@@ -79,7 +93,7 @@
         make.top.equalTo(weakSelf.view.mas_top).offset(69);
         make.left.equalTo(weakSelf.view.mas_left);
         make.right.equalTo(weakSelf.view.mas_right);
-        make.bottom.equalTo(weakSelf.view.mas_bottom);
+        make.bottom.equalTo(weakSelf.view.mas_bottom).offset(-49);
         make.width.equalTo(weakSelf.view.mas_width);
     }];
 
@@ -119,10 +133,17 @@
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    NSLog(@"scrollViewDidEndDecelerating");
+    NSLog(@"%f",scrollView.contentOffset.y);
+    _tableOffsetHight = scrollView.contentOffset.y;
+}
+
 #pragma mark - 3D Touch Delegate
 -(UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location
 {
-    CGPoint  newLocation = CGPointMake(location.x, location.y-69);
+    CGPoint  newLocation = CGPointMake(location.x, _tableOffsetHight+location.y-69);
     NSIndexPath *index = [self.mainTableView indexPathForRowAtPoint:newLocation];
     //获取当前选择的表单元格
     UITableViewCell *cell = [self.mainTableView cellForRowAtIndexPath:index];
