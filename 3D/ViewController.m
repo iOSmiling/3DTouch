@@ -17,7 +17,7 @@
 @property (nonatomic,strong) UITableView *mainTableView;
 @property (nonatomic,strong) NSMutableArray *dataArray;
 
-@property (nonatomic)  CGFloat tableOffsetHight;
+//@property (nonatomic)  CGFloat tableOffsetHight;
 
 @end
 
@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.automaticallyAdjustsScrollViewInsets = NO;
 
     // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor whiteColor];
@@ -41,7 +41,7 @@
          NSLog(@"你的手机支持3D Touch!");
         
         //通过 registerForPreviewingWithDelegate 方法，将当前 viewcontroller 增加预览功能
-         [self registerForPreviewingWithDelegate:(id)self sourceView:self.view];
+         [self registerForPreviewingWithDelegate:(id)self sourceView:self.mainTableView];
         
     }else
     {
@@ -76,7 +76,7 @@
     [self.dataArray addObject:@"3D13"];
     [self.dataArray addObject:@"3D14"];
     
-    _tableOffsetHight = 0.0;
+//    _tableOffsetHight = 0.0;
     
     [self.mainTableView reloadData];
 }
@@ -89,22 +89,32 @@
     
     [self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make)
     {
-//        make.edges.equalTo(weakSelf.view);
-        make.top.equalTo(weakSelf.view.mas_top).offset(69);
-        make.left.equalTo(weakSelf.view.mas_left);
-        make.right.equalTo(weakSelf.view.mas_right);
-        make.bottom.equalTo(weakSelf.view.mas_bottom).offset(-49);
+        make.edges.equalTo(weakSelf.view);
+//        make.top.equalTo(weakSelf.view.mas_top).offset(69);
+//        make.left.equalTo(weakSelf.view.mas_left);
+//        make.right.equalTo(weakSelf.view.mas_right);
+//        make.bottom.equalTo(weakSelf.view.mas_bottom).offset(-49);
         make.width.equalTo(weakSelf.view.mas_width);
     }];
-
-
 }
 
 #pragma mark TableViewDelegate
 
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0)
+    {
+         return NO;
+    
+    }else
+    {
+         return YES;
+    }
+
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 100;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -133,18 +143,20 @@
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    NSLog(@"scrollViewDidEndDecelerating");
-    NSLog(@"%f",scrollView.contentOffset.y);
-    _tableOffsetHight = scrollView.contentOffset.y;
-}
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+//{
+//    NSLog(@"scrollViewDidEndDecelerating");
+//    NSLog(@"%f",scrollView.contentOffset.y);
+////    _tableOffsetHight = scrollView.contentOffset.y;
+//}
 
 #pragma mark - 3D Touch Delegate
 -(UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location
 {
-    CGPoint  newLocation = CGPointMake(location.x, _tableOffsetHight+location.y-69);
-    NSIndexPath *index = [self.mainTableView indexPathForRowAtPoint:newLocation];
+//    CGPoint  newLocation = CGPointMake(location.x, _tableOffsetHight+location.y);
+    
+    NSIndexPath *index = [self.mainTableView indexPathForRowAtPoint:location];
+    
     //获取当前选择的表单元格
     UITableViewCell *cell = [self.mainTableView cellForRowAtIndexPath:index];
     
@@ -152,9 +164,9 @@
     {
         DetailViewController *detailViewController = [[DetailViewController alloc] init];
         detailViewController.maintitle = [self.dataArray objectAtIndex:index.row];
-        //预览窗口只截取详情视频 detailViewController 的上半部分，高度设置为 240
-        detailViewController.preferredContentSize =(CGSize){0, 240};
-        //除了这个单元格，需要模糊其它位置
+     
+        detailViewController.preferredContentSize =(CGSize){0, 0};
+    
         previewingContext.sourceRect = cell.frame;
         
         return detailViewController;
