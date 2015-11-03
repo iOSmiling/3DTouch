@@ -8,13 +8,14 @@
 			<key>UIApplicationShortcutItemIconType</key>
 			<string>UIApplicationShortcutIconTypeShare</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>分享</string>
+			<string>share</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>UITouchText.share</string>
 			<key>UIApplicationShortcutItemUserInfo</key>
-			<dict/>
-			<key>key1</key>
-			<string>value1</string>
+			<dict>
+				<key>url</key>
+				<string>value1</string>
+			</dict>
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconType</key>
@@ -25,7 +26,7 @@
 			<string>UITouchText.look</string>
 			<key>UIApplicationShortcutItemUserInfo</key>
 			<dict>
-				<key>key2</key>
+				<key>url</key>
 				<string>value2</string>
 			</dict>
 		</dict>
@@ -38,7 +39,7 @@
 			<string>UITouchText.compose</string>
 			<key>UIApplicationShortcutItemUserInfo</key>
 			<dict>
-				<key>key2</key>
+				<key>url</key>
 				<string>value2</string>
 			</dict>
 		</dict>

@@ -38,21 +38,12 @@
     {
         [self.dataArray removeAllObjects];
     }
-    [self.dataArray addObject:@"3D0"];
-    [self.dataArray addObject:@"3D1"];
-    [self.dataArray addObject:@"3D2"];
-    [self.dataArray addObject:@"3D3"];
-    [self.dataArray addObject:@"3D4"];
-    [self.dataArray addObject:@"3D5"];
-    [self.dataArray addObject:@"3D6"];
-    [self.dataArray addObject:@"3D7"];
-    [self.dataArray addObject:@"3D8"];
-    [self.dataArray addObject:@"3D9"];
-    [self.dataArray addObject:@"3D10"];
-    [self.dataArray addObject:@"3D11"];
-    [self.dataArray addObject:@"3D12"];
-    [self.dataArray addObject:@"3D13"];
-    [self.dataArray addObject:@"3D14"];
+    
+    for (int i = 0; i<20; i++)
+    {
+         [self.dataArray addObject:[NSString stringWithFormat:@"3D%d",i]];
+    }
+
     [self.mainTableView reloadData];
     
     //支持判断
@@ -82,8 +73,6 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
-    
- 
 
 }
 
@@ -139,13 +128,9 @@
         else
         {
             DetailViewController *detailViewController = [[DetailViewController alloc] init];
-            
             detailViewController.maintitle = [self.dataArray objectAtIndex:index.row];
-            
             detailViewController.preferredContentSize =(CGSize){0, 0};
-            
             previewingContext.sourceRect = cell.frame;
-            
             return detailViewController;
         }
     }
@@ -166,7 +151,7 @@
 
 - (void) clickAdd:(id)sender
 {
-     SareViewController *plistAddViewController = [[SareViewController alloc] init];
+    SareViewController *plistAddViewController = [[SareViewController alloc] init];
     [self.navigationController pushViewController:plistAddViewController animated:YES];
     
 }

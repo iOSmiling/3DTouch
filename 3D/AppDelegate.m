@@ -23,7 +23,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     ViewController *viewController = [[ViewController alloc] init];
     UINavigationController *NavigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
@@ -31,20 +30,16 @@
     NavigationController.tabBarItem.title = @"列表";
 
     OneViewController *oneViewController = [[OneViewController alloc] init];
-    UINavigationController *oneNavigationController
-    = [[UINavigationController alloc] initWithRootViewController:oneViewController];
+    UINavigationController *oneNavigationController = [[UINavigationController alloc] initWithRootViewController:oneViewController];
     oneNavigationController.navigationBar.barStyle = UIBarStyleBlack;
     oneNavigationController.tabBarItem.title = @"设置";
     
     self.mainTabBarController = [[UITabBarController alloc] init] ;
     self.mainTabBarController.tabBar.tintColor = [UIColor colorWithRed:76.0/255.0 green:61.0/255.0 blue:142.0/255.0 alpha:1.0];
-    self.mainTabBarController.viewControllers = [NSArray arrayWithObjects:
-                                                 NavigationController,
-                                                 oneNavigationController,
-                                                 nil];
+    self.mainTabBarController.viewControllers = [NSArray arrayWithObjects:NavigationController, oneNavigationController, nil];
     [self.mainTabBarController setSelectedIndex:0];
     self.window.rootViewController = self.mainTabBarController;
-    
+
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -53,23 +48,21 @@
 {
     if([shortcutItem.type isEqualToString:@"UITouchText.share"])
     {
-         //获取shortcutItem 的userInfo的字典
-         NSLog(@"%@",shortcutItem.userInfo);
+          NSLog(@"shortcutItem:%@",shortcutItem);
+          NSLog(@"shortcutItem.userInfo:%@",shortcutItem.userInfo);
          [self.mainTabBarController setSelectedIndex:0];
-         //selectedViewController 本身就是导航视图  push的时候不用加navigationController
           SareViewController *sareViewController = [[SareViewController alloc] init];
          [self.mainTabBarController.selectedViewController pushViewController:sareViewController animated:YES];
         
     }else if ([shortcutItem.type isEqualToString:@"UITouchText.look"])
     {
-        NSLog(@"%@",shortcutItem.userInfo);
+    
        [self.mainTabBarController setSelectedIndex:0];
        LookViewController *sareViewController = [[LookViewController alloc] init];
        [self.mainTabBarController.selectedViewController pushViewController:sareViewController animated:YES];
     
     }else if ([shortcutItem.type isEqualToString:@"UITouchText.compose"])
     {
-        NSLog(@"%@",shortcutItem.userInfo);
        [self.mainTabBarController setSelectedIndex:1];
        CompossViewController *sareViewController = [[CompossViewController alloc] init];
        [self.mainTabBarController.selectedViewController pushViewController:sareViewController animated:YES];
