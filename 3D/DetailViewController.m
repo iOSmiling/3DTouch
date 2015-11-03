@@ -31,6 +31,8 @@
 {
     [super viewWillAppear:YES];
     
+    NSLog(@"%@",self.maintitle);
+    
     self.mainLabel.text = self.maintitle;
 
 }
@@ -64,6 +66,7 @@
     {
         _mainLabel = [[UILabel alloc] init];
         _mainLabel.textAlignment = NSTextAlignmentCenter;
+        _mainLabel.textColor = [UIColor blueColor];
     }
     return _mainLabel;
 }

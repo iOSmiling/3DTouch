@@ -24,34 +24,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"3D";
+    self.navigationItem.title = @"3D";
+    self.tabBarItem.title = @"列表";
     [self loadNaviBar];
     [self.view addSubview:self.mainTableView];
-    
-    //支持判断
-    if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable)
-    {
-         NSLog(@"你的手机支持3D Touch!");
-         //通过 registerForPreviewingWithDelegate 方法，将当前 viewcontroller 增加预览功能 sourceView要设置成自己的tableview
-         [self registerForPreviewingWithDelegate:(id)self sourceView:self.mainTableView];
-        
-    }else
-    {
-        NSLog(@"你的手机暂不支持3D Touch!");
-    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    
     if(self.dataArray.count>0)
     {
         [self.dataArray removeAllObjects];
     }
-    
     [self.dataArray addObject:@"3D0"];
     [self.dataArray addObject:@"3D1"];
     [self.dataArray addObject:@"3D2"];
@@ -68,6 +54,17 @@
     [self.dataArray addObject:@"3D13"];
     [self.dataArray addObject:@"3D14"];
     [self.mainTableView reloadData];
+    
+    //支持判断
+    if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable)
+    {
+        NSLog(@"你的手机支持3D Touch!");
+        //通过 registerForPreviewingWithDelegate 方法，将当前 viewcontroller 增加预览功能 sourceView要设置成自己的tableview
+        [self registerForPreviewingWithDelegate:(id)self sourceView:self.mainTableView];
+    }else
+    {
+        NSLog(@"你的手机暂不支持3D Touch!");
+    }
 }
 
 -(void)viewWillLayoutSubviews
@@ -75,12 +72,19 @@
     [super viewWillLayoutSubviews];
 
     __weak typeof(self) weakSelf = self;
-    
     [self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make)
     {
         make.edges.equalTo(weakSelf.view);
         make.width.equalTo(weakSelf.view.mas_width);
     }];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    
+ 
+
 }
 
 #pragma mark TableViewDelegate
@@ -113,6 +117,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DetailViewController * detailViewController = [[DetailViewController alloc] init];
+    detailViewController.maintitle = [self.dataArray objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
@@ -120,20 +125,29 @@
 -(UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location
 {
     NSIndexPath *index = [self.mainTableView indexPathForRowAtPoint:location];
-    
     //获取当前选择的表单元格
     UITableViewCell *cell = [self.mainTableView cellForRowAtIndexPath:index];
     
     if(cell != nil )
     {
-        DetailViewController *detailViewController = [[DetailViewController alloc] init];
-        detailViewController.maintitle = [self.dataArray objectAtIndex:index.row];
-     
-        detailViewController.preferredContentSize =(CGSize){0, 0};
-    
-        previewingContext.sourceRect = cell.frame;
         
-        return detailViewController;
+        //防止重复加入
+        if ([self.presentedViewController isKindOfClass:[DetailViewController class]])
+        {
+            return nil;
+        }
+        else
+        {
+            DetailViewController *detailViewController = [[DetailViewController alloc] init];
+            
+            detailViewController.maintitle = [self.dataArray objectAtIndex:index.row];
+            
+            detailViewController.preferredContentSize =(CGSize){0, 0};
+            
+            previewingContext.sourceRect = cell.frame;
+            
+            return detailViewController;
+        }
     }
     return nil;
 }
@@ -157,12 +171,6 @@
     
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 -(UITableView *)mainTableView
 {
     if (!_mainTableView)
@@ -183,6 +191,12 @@
     }
 
     return _dataArray;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end

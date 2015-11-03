@@ -28,13 +28,13 @@
     ViewController *viewController = [[ViewController alloc] init];
     UINavigationController *NavigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     NavigationController.navigationBar.barStyle = UIBarStyleBlack;
-    NavigationController.tabBarItem.title = @"3D";
+    NavigationController.tabBarItem.title = @"列表";
 
     OneViewController *oneViewController = [[OneViewController alloc] init];
     UINavigationController *oneNavigationController
     = [[UINavigationController alloc] initWithRootViewController:oneViewController];
     oneNavigationController.navigationBar.barStyle = UIBarStyleBlack;
-    oneNavigationController.tabBarItem.title = @"One";
+    oneNavigationController.tabBarItem.title = @"设置";
     
     self.mainTabBarController = [[UITabBarController alloc] init] ;
     self.mainTabBarController.tabBar.tintColor = [UIColor colorWithRed:76.0/255.0 green:61.0/255.0 blue:142.0/255.0 alpha:1.0];

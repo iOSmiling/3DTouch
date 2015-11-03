@@ -34,6 +34,8 @@
 		A4835A501BE35C2200233C91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4835A4E1BE35C2200233C91 /* LaunchScreen.storyboard */; };
 		A4835A5B1BE35C2200233C91 /* _DTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4835A5A1BE35C2200233C91 /* _DTests.m */; };
 		A4835A661BE35C2200233C91 /* _DUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4835A651BE35C2200233C91 /* _DUITests.m */; };
+		A4E64F681BE869930044B4F8 /* PeekViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E64F671BE869930044B4F8 /* PeekViewController.m */; };
+		A4E64F6D1BE877DC0044B4F8 /* top.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E64F6C1BE877DC0044B4F8 /* top.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +112,9 @@
 		A4835A611BE35C2200233C91 /* 3DUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 3DUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4835A651BE35C2200233C91 /* _DUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _DUITests.m; sourceTree = "<group>"; };
 		A4835A671BE35C2200233C91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4E64F661BE869930044B4F8 /* PeekViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeekViewController.h; sourceTree = "<group>"; };
+		A4E64F671BE869930044B4F8 /* PeekViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeekViewController.m; sourceTree = "<group>"; };
+		A4E64F6C1BE877DC0044B4F8 /* top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +203,7 @@
 		A4835A3F1BE35C2200233C91 /* 3D */ = {
 			isa = PBXGroup;
 			children = (
+				A4E64F6C1BE877DC0044B4F8 /* top.png */,
 				A40039AB1BE743D900A376D6 /* Reveal.framework */,
 				A40039821BE7328000A376D6 /* Masonry */,
 				A4835A431BE35C2200233C91 /* AppDelegate.h */,
@@ -206,12 +212,14 @@
 				A4835A471BE35C2200233C91 /* ViewController.m */,
 				A400397F1BE7316F00A376D6 /* DetailViewController.h */,
 				A40039801BE7316F00A376D6 /* DetailViewController.m */,
-				A4588FEE1BE374AF00562367 /* OneViewController.h */,
-				A4588FEF1BE374AF00562367 /* OneViewController.m */,
 				A4588FE51BE3683800562367 /* SareViewController.h */,
 				A4588FE61BE3683800562367 /* SareViewController.m */,
 				A4588FE81BE3684500562367 /* LookViewController.h */,
 				A4588FE91BE3684500562367 /* LookViewController.m */,
+				A4588FEE1BE374AF00562367 /* OneViewController.h */,
+				A4588FEF1BE374AF00562367 /* OneViewController.m */,
+				A4E64F661BE869930044B4F8 /* PeekViewController.h */,
+				A4E64F671BE869930044B4F8 /* PeekViewController.m */,
 				A4588FEB1BE3685400562367 /* CompossViewController.h */,
 				A4588FEC1BE3685400562367 /* CompossViewController.m */,
 				A4835A491BE35C2200233C91 /* Main.storyboard */,
@@ -356,6 +364,7 @@
 				A400399D1BE7328000A376D6 /* Info.plist in Resources */,
 				A4835A501BE35C2200233C91 /* LaunchScreen.storyboard in Resources */,
 				A4835A4D1BE35C2200233C91 /* Assets.xcassets in Resources */,
+				A4E64F6D1BE877DC0044B4F8 /* top.png in Resources */,
 				A4835A4B1BE35C2200233C91 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,6 +397,7 @@
 				A40039811BE7316F00A376D6 /* DetailViewController.m in Sources */,
 				A40039A61BE7328000A376D6 /* View+MASAdditions.m in Sources */,
 				A40039A11BE7328000A376D6 /* MASLayoutConstraint.m in Sources */,
+				A4E64F681BE869930044B4F8 /* PeekViewController.m in Sources */,
 				A400399F1BE7328000A376D6 /* MASConstraint.m in Sources */,
 				A40039A51BE7328000A376D6 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				A400399E1BE7328000A376D6 /* MASCompositeConstraint.m in Sources */,
