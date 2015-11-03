@@ -83,7 +83,6 @@
         NSLog(@"tap 3 selected");
     }];
     
-    // 赛到UIPreviewActionGroup中
     NSArray *actions = @[action1, action2, action3];
     NSArray *taps = @[tap1, tap2, tap3];
     UIPreviewActionGroup *group1 = [UIPreviewActionGroup actionGroupWithTitle:@"Action Group" style:UIPreviewActionStyleDefault actions:actions];
